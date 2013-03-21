@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "graphed"
   spec.version       = Graphed::VERSION
   spec.authors       = ["Zoltan"]
-  spec.email         = ["zdebre@gmail.com"]
+  spec.email         = [""]
   spec.description   = %q{TODO: Write a gem description}
   spec.summary       = %q{TODO: Write a gem summary}
   spec.homepage      = ""
