@@ -1,6 +1,5 @@
-require "graphed/version"
+require 'graphed/version'
+require 'graphed/console'
 
 module Graphed
-  puts 'I am running...'
-  # Your code goes here...
 end
