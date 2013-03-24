@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Graphed::VERSION
   spec.authors       = ["Zoltan"]
   spec.email         = [""]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Simple image editor}
+  spec.summary       = %q{Simple image editors}
   spec.homepage      = ""
   spec.license       = "MIT"
 

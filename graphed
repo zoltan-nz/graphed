@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'lib/graphed'
-
-Graphed.process_command(ARGV)
