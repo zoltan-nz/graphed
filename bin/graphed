@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 require 'graphed'
 
-Graphed.ProcessCommand(ARGV)
+Graphed.Launch
