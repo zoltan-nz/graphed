@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
 require 'graphed'
 
-Graphed.Launch
+#Graphed.Launch
+Graphed::Looper.main
