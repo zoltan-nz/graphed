@@ -4,33 +4,58 @@ require 'pp'
 module Graphed
   class Looper
 
+    #Processing commands with regex
     def self.execute_command(command, image)
-
       case command
         when /^I (\d+) (\d+)/
-          image = ImageEditor.I($1.to_i, $2.to_i)
-        when /^C/
-          image = ImageEditor.I(image[0].length, image.length)
-        when /^L (\d+) (\d+) (.+$)/
-          image.L($1.to_i, $2.to_i, $3)
-        when /^V (\d+) (\d+) (\d+) (.+$)/
-          image.V($1.to_i, $2.to_i, $3.to_i, $4)
-        when /^H (\d+) (\d+) (\d+) (.+$)/
-          image.H($1.to_i, $2.to_i, $3.to_i, $4)
-        when /^F (\d+) (\d+) (.+$)/
-          image.F($1.to_i, $2.to_i, $3)
-        when /^S/
-          image.S
+          m = $1.to_i
+          n = $2.to_i
+          image = ImageEditor.new(m, n)
         when /^help/
           help
         else
-          puts "No match is found"
+          unless image[0].nil? #Following commands valid only if object is created.
+            case command
+              when /^C/
+                image = ImageEditor.new(image.cols, image.rows)
+              when /^L (\d+) (\d+) (.+$)/
+                x = $1.to_i
+                y = $2.to_i
+                c = $3
+                image.valid_on?(x,y) ? image.L(x, y, c) : puts("Sorry, wrong parameters.")
+              when /^V (\d+) (\d+) (\d+) (.+$)/
+                x = $1.to_i
+                y1 = $2.to_i
+                y2 = $3.to_i
+                c = $4
+                (y1<=y2) && image.valid_on?(x, y1) && image.valid_on?(x, y2) ? image.V(x, y1, y2, c) : puts("Sorry, wrong parameters.")
+              when /^H (\d+) (\d+) (\d+) (.+$)/
+                x1 = $1.to_i
+                x2 = $2.to_i
+                y = $3.to_i
+                c = $4
+                (x1<=x2) && image.valid_on?(x1, y) && image.valid_on?(x2,y) ? image.H(x1, x2, y, c) : puts("Sorry, wrong parameters.")
+              when /^F (\d+) (\d+) (.+$)/
+                x = $1.to_i
+                y = $2.to_i
+                c = $3
+                image.valid_on?(x, y) ? image.F(x, y, c) : puts("Sorry, wrong parameters.")
+              when /^S/
+                image.S
+            else
+                puts "Sorry, try again. Type 'help' to see all commands."
+            end
+          else
+            puts "Tip: create an image first with 'I'. Example: I 9 7"
+          end
       end
-
       image
-
+    rescue
+      puts "Exception: Sorry, something happened, please try again."
+      return image
     end
 
+    #Help message and instruction
     def self.help
       print <<-EOF
 This program simulates a simple interactive graphical editor.
@@ -49,6 +74,7 @@ help        Show this help
       EOF
     end
 
+    #Good for debugging
     def self.automata(image)
       image = execute_command('I 15 10', image)
       image = execute_command('V 3 3 9 x', image)
@@ -58,26 +84,17 @@ help        Show this help
       image = execute_command('S', image)
     end
 
+    #Main entry point
     def self.main
-
-
-      help
-
+      help #Show help message
       image = []
-
-      image = automata(image)
-
+      #image = automata(image)
       loop do
         line = Readline::readline('GraphEd> ')
         exit if line.nil? || line == 'X'
         Readline::HISTORY.push(line)
-
         image = execute_command(line, image)
       end
-
     end
-
-
-
   end
 end

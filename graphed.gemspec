@@ -6,11 +6,11 @@ require 'graphed/version'
 Gem::Specification.new do |spec|
   spec.name          = "graphed"
   spec.version       = Graphed::VERSION
-  spec.authors       = ["Zoltan"]
+  spec.authors       = ["Zoltan Debre"]
   spec.email         = [""]
-  spec.description   = %q{Simple image editor}
-  spec.summary       = %q{Simple image editors}
-  spec.homepage      = ""
+  spec.description   = %q{Simple image editor simulator in a command line.}
+  spec.summary       = %q{Simple image editor.}
+  spec.homepage      = "https://github.com/szines/graphed"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
