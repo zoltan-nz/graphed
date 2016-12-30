@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = [""]
   spec.description   = %q{Simple image editor simulator in a command line.}
   spec.summary       = %q{Simple image editor.}
-  spec.homepage      = "https://github.com/szines/graphed"
+  spec.homepage      = "https://github.com/zoltan-nz/graphed"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rb-readline"
 end
